@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(MyApp());
@@ -19,50 +20,28 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 400,
-        width: 300,
-        color: Color.fromARGB(60, 80, 80, 08),
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: Icon(Icons.home,size: 40,color:Colors.redAccent),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Icon(Icons.ac_unit_outlined,size: 40,color:Colors.pinkAccent),
-            )
-            ,
-            Align(
-              alignment: Alignment.topLeft,
-              child: Icon(Icons.access_alarm,size: 40,color:Colors.amberAccent),
-            )
-            ,
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: List.generate(50, (index) => MyButton('我要长yi点$index')),
       ),
     );
-    // return Center(
-    //   child: Stack(
-    //     alignment: Alignment(-.9,0.9),
-    //     children: [
-    //       Container(
-    //         height: 300,
-    //         width: 300,
-    //         color: Color.fromARGB(60, 0, 0, 0),
-    //         // child: ,
-    //       ),
-    //       Container(
-    //         height: 50,
-    //         width: 50,
-    //         color: Color.fromARGB(60, 80, 80, 08),
-    //         // child: ,
-    //       ),
-    //      Text('你好 我是文本。。。'),
-    //     ],
-    //   ),
-    // );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  final String text;
+
+  const MyButton(this.text, {Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+        child: Text(this.text),
+        textColor: Theme.of(context).accentColor,
+        onPressed: () {
+          print('这按钮的动效也太酷了吧');
+        });
   }
 }

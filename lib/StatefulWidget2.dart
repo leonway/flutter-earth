@@ -22,12 +22,31 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
+  List list = List();
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        '这就是flutter🐎？ i了i了'
-      ),
+    return ListView(
+      children: [
+        Column(
+          children: this
+              .list
+              .map((e) => ListTile(
+                    title: Text(e),
+                  ))
+              .toList(),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        RaisedButton(
+            child: Text('按钮'),
+            onPressed: () {
+              setState(() {
+                this.list.add('不错不错');
+              });
+            })
+      ],
     );
   }
 }
